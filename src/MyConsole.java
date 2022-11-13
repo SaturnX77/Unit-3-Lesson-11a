@@ -15,7 +15,7 @@ public class MyConsole {
 
 
         // TO DO: Call the methods you write to provide the information to the user.
-
+        //I did it all in the other class, no need :)
 
 
 

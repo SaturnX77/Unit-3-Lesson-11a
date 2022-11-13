@@ -99,6 +99,7 @@ public class Spotbox {
             }
         } else if (response == 4) {
             System.out.println(ANSI_GREEN + "Thank you for using Spotbox!");
+            scanner.close();
             exit(0);
         } else {
             System.out.println(ANSI_RED+"Invalid response" + ANSI_RESET);
@@ -144,9 +145,7 @@ public class Spotbox {
                 artistStorage.add(artists[i]);
             }
         }
-        //if (!searchAll){
         genrePrint(inputGenre, searchAll);
-        //}
     }
     public void genreList(){
         System.out.println(ANSI_GREEN + "Here are all of the available genres:" + ANSI_RESET);
@@ -184,12 +183,7 @@ public class Spotbox {
                 artistStorage.add(artists[i]);
             }
         }
-        //if (!searchAll){
         artistPrint(inputArtist, searchAll);
-       // }
-//        else {
-//            artistPrint(searchAllIn);
-//        }
     }
     public void artistPrint(String inputArtist, boolean searchAll){
         if(artistStorage.size() == 0){
