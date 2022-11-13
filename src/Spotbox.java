@@ -20,6 +20,7 @@ public class Spotbox {
     String[] artists;
     String[] genres;
     String[] albums;
+    private ArrayList<String> genreConv = new ArrayList<String>();
 
 
     // TO DO: Declare instance variables for the arrays you need.
@@ -27,6 +28,8 @@ public class Spotbox {
         this.artists = artists;
         this.genres = genres;
         this.albums = albums;
+        genreConv.addAll(Arrays.asList(genres));
+        genreConv = filterDup(splitArray(genreConv));
     }
 
 
@@ -92,14 +95,15 @@ public class Spotbox {
         if (!searchAll){
             genrePrint(inputGenre);
         }
-
     }
     public void genreList(){
         System.out.println(ANSI_GREEN + "Here are all of the available genres:" + ANSI_RESET);
-        ArrayList<String> genreConv = new ArrayList<String>(Arrays.asList(genres));
-        genreConv = filterDup(splitArray(genreConv));
-        for (String item: genreConv) {
-            System.out.print(ANSI_CYAN+ item + "  " + ANSI_RESET);
+
+        for (int i = 0; i < genreConv.size(); i++) {
+            if(genreConv.get(i).equals("HipHop")){
+                genreConv.set(i, "Hip Hop");
+            }
+            System.out.print(ANSI_CYAN+ genreConv.get(i) + "  " + ANSI_RESET);
         }
         System.out.println();
     }
@@ -158,7 +162,7 @@ public class Spotbox {
 
     public ArrayList<String> splitArray(ArrayList<String> list) {
         ArrayList<String> output = new ArrayList<>();
-        String chara = "this_is_pain";
+        String chara = "I_tried_to_make_this_the_whole_script_of_shrek_but_it_didnt_like_that";
         for (String str : list) {
             output.addAll(Arrays.asList(str.replace(", &", chara).replace(",", chara).replace("&", chara).replace("/", chara).replace(" ", "").split(chara)));
         }
