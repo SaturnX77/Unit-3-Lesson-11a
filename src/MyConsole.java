@@ -10,7 +10,7 @@ public class MyConsole {
         String[] genres = reader.getStringData(498);
 
         Spotbox spotify = new Spotbox(artists,genres,albums);
-        spotify.start();
+        spotify.start(999);
 
 
 

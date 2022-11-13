@@ -35,10 +35,13 @@ public class Spotbox {
 
 
     // TO DO: Write your methods to find the information you need about your data.
-    public void start(){
+    public void start(int response){
+
         Scanner scanner = new Scanner(System.in);
-        System.out.println(ANSI_GREEN+"Welcome to Spotbox! What would you like to do? " + ANSI_YELLOW +"Press 0 to search all" + ANSI_RED + ", " + ANSI_PURPLE+ "Press 1 to search artists" + ANSI_RED + ", " + ANSI_CYAN+ "Press 2 to search genres"  + ANSI_RED + ", " + ANSI_RED+ "Press 3 to search albums" + ANSI_RED + ", " + ANSI_GREEN + "Press 4 to exit" + ANSI_RESET);
-        int response = scanner.nextInt();
+        if(response == 999 /* this is dumb but so am i so like whatever*/){
+            System.out.println(ANSI_GREEN+"Welcome to Spotbox! What would you like to do? " + ANSI_YELLOW +"Press 0 to search all" + ANSI_RED + ", " + ANSI_PURPLE+ "Press 1 to search artists" + ANSI_RED + ", " + ANSI_CYAN+ "Press 2 to search genres"  + ANSI_RED + ", " + ANSI_RED+ "Press 3 to search albums" + ANSI_RED + ", " + ANSI_GREEN + "Press 4 to exit" + ANSI_RESET);
+            response = scanner.nextInt();
+        }
         if(response == 1){
             String artistR = "";
             while(artistR.length() < 1){
@@ -58,17 +61,20 @@ public class Spotbox {
                 System.out.println(ANSI_GREEN+"What genre would you like to search for? (Press 1 to see all available genres)" + ANSI_RESET);
                 while(genreR.length() == 0){
                     genreR = scanner.nextLine();
+
                 }
                 if (genreR.equals("1")){
                     genreList();
                     genreR = "";
                 }
-//                if(genreR.length() < 1){
-//                    System.out.println(ANSI_RED+"Please provide a more specific search" + ANSI_RESET);
-//                }
                 else {
-                    genreR = genreR.substring(0,1).toUpperCase() + genreR.substring(1);
-                    genrePull(genreR, false);
+                    //if(!genres.contains(genreR)){
+                       // System.out.println(ANSI_RED+ "Please enter a valid genre (Press 1 to see all available genres)" + ANSI_RESET);
+                       // start(2);
+                  //  } else {
+                        //genreR = genreR.substring(0,1).toUpperCase() + genreR.substring(1);
+                        genrePull(genreR, false);
+                    //}
                 }
             }
         } else if (response == 3) {
@@ -77,7 +83,7 @@ public class Spotbox {
 
         } else {
             System.out.println(ANSI_RED+"Invalid response" + ANSI_RESET);
-            start();
+            start(999);
         }
     }
 
@@ -86,7 +92,7 @@ public class Spotbox {
     }
 
     public void genrePull(String inputGenre, boolean searchAll){
-        for(int i = 0; i < genres.length; i++){
+        for(int i = 0; i < genreConv.size(); i++){
             if(genres[i].toLowerCase().contains(inputGenre.toLowerCase())){
                 albumStorage.add(albums[i]);
                 artistStorage.add(artists[i]);
@@ -98,10 +104,9 @@ public class Spotbox {
     }
     public void genreList(){
         System.out.println(ANSI_GREEN + "Here are all of the available genres:" + ANSI_RESET);
-
         for (int i = 0; i < genreConv.size(); i++) {
             if(genreConv.get(i).equals("HipHop")){
-                genreConv.set(i, "Hip Hop");
+                genreConv.set(i, "Hip Hop"); //i am so so so sorry for this
             }
             System.out.print(ANSI_CYAN+ genreConv.get(i) + "  " + ANSI_RESET);
         }
@@ -173,7 +178,7 @@ public class Spotbox {
         System.out.println(ANSI_BOLD + ANSI_GREEN+ "---------------------------" + ANSI_RESET);
         albumStorage.clear();
         artistStorage.clear();
-        start();
+        start(999);
     }
 //////////
 }
